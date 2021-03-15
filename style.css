@@ -75,7 +75,7 @@ a, a:hover, a:focus {
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media (max-width: 768px) {   /*  When the max width of the device is less than 768px  */
   #sidebar {
     margin-left: -250px;
     transform: rotateY(90deg);
@@ -175,12 +175,13 @@ a, a:hover, a:focus {
   scrollbar-color: #203340 #aaa;
 }
 
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
+/* Works on Chrome, Edge, and Safari */ 
+/* start customize scrollbar */
+*::-webkit-scrollbar { 
   width: 10px;
 }
 
-*::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {   
   background: #aaa;
 }
 
@@ -197,3 +198,4 @@ a, a:hover, a:focus {
   overflow: auto !important;
   transition: 0.4s;
 }
+/* End customize scrollbar */
