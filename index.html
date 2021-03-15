@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> Music Catalog </title>
+  <link rel="stylesheet"
+    href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+    integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js"
+    integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ"
+    crossorigin="anonymous"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js"
+    integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <!-- Page Content Holder -->
+    <div id="content">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <i class="fas fa-align-justify"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="logo w-100">
+              <p class="h2 font-weight-bold text-dark text-center">Music Catalog</p>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+          <!-- Start Tag selection page -->
+          <div id="tag" class="tab tab-active">
+            <div class="row">
+              <div class="col-sm-4">
+                <div id="tag_accordion">
+                  <div class="card">
+                    <div class="card-header font-weight-bold" id="headingOne">
+                      <h5 class="mb-0">
+                        <button class="btn btn-link collapse-btn w-100" data-toggle="collapse"
+                          data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                          <div class="d-flex justify-content-between">
+                            <span class="font-weight-bold">Tag selection</span>
+                            <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                          </div>
+                        </button>
+                      </h5>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                      data-parent="#tag_accordion">
+                      <div class="card-body p-0" id="tag_list">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-8">
+                <div class="card">
+                  <div class="card-header font-weight-bold py-4 text-dark">
+                    TOP ARTISTS
+                  </div>
+                  <div class="card-body p-0 artists_list">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Tag Selection page -->
+        <!-- Start Artist page -->
+        <div id="artist" class="tab">
+          <div class="card m-5">
+            <div class="card-body">
+              <div id="artist_name" class="card-header font-weight-bold h2 font-weight-bold"></div>
+              <button class="btn back mt-3 btn-secondary">Back</button>
+              <div class="card mt-3">
+                <div class="card-body" id="biography">
+                </div>
+                <span class="show_more mx-auto p-4 text-primary">Show more</span>
+              </div>
+              <div class="card mt-3">
+                <div class="card-header font-weight-bold">Albums</div>
+                <div class="card-body">
+                  <div class="row" id="artist_album_list">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-7">
+                  <div class="card mt-3">
+                    <div class="card-body">
+                      <div id="artists_image" class="carousel slide carousel-fade" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        </ol>
+                        <div class="carousel-inner">
+                        </div>
+                        <a class="carousel-control-prev" href="#artists_image" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#artists_image" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-5">
+                  <div id="associated_accordion">
+                    <div class="card mt-3">
+                      <div class="card-header font-weight-bold px-0 py-2" id="headingTwo">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapse-btn w-100 plus collapsed" data-toggle="collapse"
+                            data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <div class="d-flex justify-content-between">
+                              <span class="font-weight-bold">Associated Tags</span>
+                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                            </div>
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#associated_accordion">
+                        <div class="card-body p-0" id="associated_list">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="similar_accordion">
+                    <div class="card mt-3">
+                      <div class="card-header font-weight-bold px-0 py-2" id="headingThree">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapse-btn w-100 plus collapsed" data-toggle="collapse"
+                            data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <div class="d-flex justify-content-between">
+                              <span class="font-weight-bold">Similar selection</span>
+                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                            </div>
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                        data-parent="#similar_accordion">
+                        <div class="card-body p-0" id="similar_list">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="tracks_accordion">
+                    <div class="card mt-3">
+                      <div class="card-header font-weight-bold px-0 py-2" id="headingFour">
+                        <h5 class="mb-0">
+                          <button class="btn btn-link collapse-btn w-100 plus collapsed" data-toggle="collapse"
+                            data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <div class="d-flex justify-content-between">
+                              <span class="font-weight-bold">Top Tracks</span>
+                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                            </div>
+                          </button>
+                        </h5>
+                      </div>
+                      <div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+                        data-parent="#tracks_accordion">
+                        <div class="card-body p-0 pb-3" id="tracks_list">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Artist page -->
+      </div>
+    </div>
+  </div>
+  <!-- The album page that display when click on music icon -->
+  <div class="modal fade" id="song_list" tabindex="-1" role="dialog" aria-labelledby="song_list_modal"
+    aria-hidden="true">
+    <div class="modal-dialog" style="width: 1200px;" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title font-weight-bold" id="song_list_modal">TOP ALBUM OF <span
+              id="artist_name_album"></span></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="card">
+                <div class="card-header font-weight-bold">
+                  ALBUM LIST
+                </div>
+                <div class="card-body p-0">
+                  <div class="album_list"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="card">
+                <div class="card-header font-weight-bold">
+                  DETAIL
+                </div>
+                <div class="card-body">
+                  <div class="album_detail">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="album_name" class="sup">Album Name</label>
+                          <p id="album_name" class="text-dark font-weight-bold"></p>
+                        </div>
+                        <div class="form-group">
+                          <label for="listener" class="sup">Listener</label>
+                          <p id="listener" class="text-dark font-weight-bold"></p>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div class="form-group">
+                          <label for="playcount" class="sup">Play Count</label>
+                          <p id="playcount" class="text-dark font-weight-bold"></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <div id="album_tags_accordion">
+                          <div class="card mt-3">
+                            <div class="card-header font-weight-bold px-0 py-2" id="headingFive">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapse-btn w-100 plus collapsed" data-toggle="collapse"
+                                  data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                  <div class="d-flex justify-content-between">
+                                    <span class="font-weight-bold">Tags</span>
+                                    <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                                  </div>
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+                              data-parent="#album_tags_accordion">
+                              <div class="card-body p-0" id="album_tags">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-6">
+                        <div id="album_tracks_accordion">
+                          <div class="card mt-3">
+                            <div class="card-header font-weight-bold px-0 py-2" id="headingSix">
+                              <h5 class="mb-0">
+                                <button class="btn btn-link collapse-btn w-100 plus collapsed" data-toggle="collapse"
+                                  data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                  <div class="d-flex justify-content-between">
+                                    <span class="font-weight-bold">Tracks</span>
+                                    <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                                  </div>
+                                </button>
+                              </h5>
+                            </div>
+                            <div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+                              data-parent="#album_tracks_accordion">
+                              <div class="card-body p-0" id="album_tracks">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card mt-3">
+                      <div class="card-header font-weight-bold">Summary</div>
+                      <div class="card-body">
+                        <div id="album_summary" class="summary"></div>
+                      </div>
+                    </div>
+                    <div class="card mt-3">
+                      <div class="card-header font-weight-bold">Album Images</div>
+                      <div class="card-body">
+                        <div id="album_image" class="carousel slide carousel-fade" data-ride="carousel">
+                          <ol class="carousel-indicators">
+                            <li data-target="#album_image" data-slide-to="0" class="active"></li>
+                          </ol>
+                          <div class="carousel-inner">
+                          </div>
+                          <a class="carousel-control-prev" href="#album_image" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="carousel-control-next" href="#album_image" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End album page -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+    integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+    integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
+  <script src="./index.js"></script>
+
+</body>
+
+</html>
