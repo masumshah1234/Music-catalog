@@ -11,6 +11,7 @@ $(function () {
   });
 
 
+
   $(".back").on("click", function (e) {
     var index = $(e.target).parents(".tab").attr("id"); // "$(e.target)" means the element that selected when click mouse left button. "parents(".tab")" selects the elements that has "tab" class among the parents element of "$(e.target)". "attr("id")" function select the "id" attribute value of the element of selected.  
     $(".tab").removeClass("tab-active"); // "removeClass" function deletes the "tab-active" class within the elements that have "tab" class. 
@@ -64,8 +65,8 @@ $(function () {
   // Get Top Artist
   $("#tag_list").on("click", function (e) {
     var name = $(e.target).attr("name");
-    $(e.target).children(".spinner").removeClass("d-none");
-    $(e.target).find(".fa-spinner").addClass("fa-spin");
+    // $(e.target).children(".spinner").removeClass("d-none");
+    // $(e.target).find(".fa-spinner").addClass("fa-spin");
     // When clicking the tag on tag selection page, I used above code to display the live loading icon. 
     $.getJSON("http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&tag=" + name + "&api_key=5dfeb6705c9ca65211c0f757ef00bd0a&format=json", function (json) {
       // Above API is to get the top artists within specific tag of genre.
@@ -73,24 +74,24 @@ $(function () {
       var count_listener = "";
       $.each(json.topartists.artist, function (i, item) {
         if (i < 50) {
-          $.ajax({
-            url: "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + item.name + "&api_key=5dfeb6705c9ca65211c0f757ef00bd0a&format=json",
-            // There are several method to get JSON data via API.
-            // I used this part to apply asynchronous API communication.
-            // Why should I apply asynchronous?
-            // It is why the next statement has to be executed after completing the just before statement.
-            type: "GET",
-            // It means it will get the data by "GET" method. And, there is also "POST" method to get the data via API
-            async: false,
-            // This is the asynchronous part, if "async" is false, asynchronous, else if "async" is true, synchronous
-            success: function (json) {
-              count_listener = json.artist.stats.listeners;
-              $(".spinner").find(".fa-spinner").removeClass("fa-spin");
-              $(".spinner").addClass("d-none");
-              // When clicking the tag on tag selection page, I used above code to display the live loading icon. 
-            }
-          });
-          html += '<div class="d-flex justify-content-between" id="row_' + item.name + '"><a class="text-dark dropdown-item artist py-3"><span class="artist_name_tag">' + item.name + "</span><span>(" + count_listener + ')</span> </a><span class="m-3 song_item text-danger" id="' + item.name + '"  data-toggle="modal" data-target="#song_list"><span class="p-2"><i class="fa fa-music fa-lg"></i></span></span></div>';
+          // $.ajax({
+          //   url: "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + item.name + "&api_key=5dfeb6705c9ca65211c0f757ef00bd0a&format=json",
+          //   // There are several method to get JSON data via API.
+          //   // I used this part to apply asynchronous API communication.
+          //   // Why should I apply asynchronous?
+          //   // It is why the next statement has to be executed after completing the just before statement.
+          //   type: "GET",
+          //   // It means it will get the data by "GET" method. And, there is also "POST" method to get the data via API
+          //   async: false,
+          //   // This is the asynchronous part, if "async" is false, asynchronous, else if "async" is true, synchronous
+          //   success: function (json) {
+          //     count_listener = json.artist.stats.listeners;
+          //     $(".spinner").find(".fa-spinner").removeClass("fa-spin");
+          //     $(".spinner").addClass("d-none");
+          //     // When clicking the tag on tag selection page, I used above code to display the live loading icon. 
+          //   }
+          // });
+          html += '<div class="d-flex justify-content-between" id="row_' + item.name + '"><a class="text-dark dropdown-item artist py-3"><span class="artist_name_tag">' + item.name + "</span><span>" + count_listener + '</span> </a><span class="m-3 song_item text-danger" id="' + item.name + '"  data-toggle="modal" data-target="#song_list"><span class="p-2"><i class="fa fa-music fa-lg"></i></span></span></div>';
         }
       });
       $('.artists_list').html(html);
@@ -98,7 +99,7 @@ $(function () {
   });
   $(".artists_list").on("click", function (e) {
     if ($(e.target).hasClass("artist") == true || $(e.target).parent().hasClass("artist") == true) {
-      var artist = $(e.target).html();
+      var artist = $(e.target).parent().children(".artist_name_tag").html();
       if ($(e.target).hasClass("artist") == true) {
         artist = $(e.target).children(".artist_name_tag").html();
       }
@@ -113,6 +114,7 @@ $(function () {
       $.getJSON("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=5dfeb6705c9ca65211c0f757ef00bd0a&format=json", function (json) {
         // Above API is to get the info of artists. I used this API to get the images of artists
         artist_name = json.artist.name;
+        console.log("Artist", json);
         biography = json.artist.bio.content;
         $.each(json.artist.image, function (i, temp) {
           temp = JSON.parse(JSON.stringify(temp).replace("#", ""));
@@ -153,7 +155,7 @@ $(function () {
               //   So I removed using "JSON.parse(JSON.stringify(temp).replace("#", ""))".
               //   After that, I can select "text" item within json array.
             });
-            albums += '<div class="tag_item_image ml-3"><a href="' + album_temp.url + '" target="_blank"><img src="' + images.text + '" class="img-fluid img-thumbnail mx-auto" alt="' + i + '"></a><div class="album_name_footer text-center">' + album_temp.name + ' ('+album_temp.playcount+')</div></div>';
+            albums += '<div class="tag_item_image ml-3"><a href="' + album_temp.url + '" target="_blank"><img src="' + images.text + '" class="img-fluid img-thumbnail mx-auto" alt="' + i + '"></a><div class="album_name_footer text-center"><a class="text-primary" target="_blank" href="' + album_temp.url + '">' + album_temp.name + '</a> (' + album_temp.playcount + ')</div></div>';
           }
         });
         $("#artist_album_list").html(albums);
@@ -168,6 +170,8 @@ $(function () {
         });
         $("#tracks_list").html(tracks);
       });
+      $(".tab").removeClass("tab-active");
+      $("#artist").addClass("tab-active");
     } else if ($(e.target).parents("span").hasClass("song_item") == true) {
       var artist = $(e.target).parents(".song_item").siblings(".artist").find(".artist_name_tag").html();
       // within above code, what's mean "siblings"?
@@ -183,12 +187,23 @@ $(function () {
             album += "<a class='text-dark album_item dropdown-item py-3' >" + temp.name + "</a>";
           }
         });
+        $(".album_content").addClass("d-none");
         $("#song_list .album_list").html(album);
         $("#artist_name_album").html(artist);
+        $("#album_name").html("");
+        $("#playcount").html("");
+        $("#listener").html("");
+        $("#album_tags").html("");
+        $("#album_tracks").html("");
+        $("#album_summary").html("");
+        $("#album_image .carousel-inner").html("");
       });
     }
+  });
+
+  $(".modal_close").on("click", function () {
     $(".tab").removeClass("tab-active");
-    $("#artist").addClass("tab-active");
+    $("#tag").addClass("tab-active");
   });
 
   // Album Item click
@@ -214,6 +229,7 @@ $(function () {
         $.each(json.album.tracks.track, function (i, tracks_temp) {
           album_tracks += "<a class='text-dark dropdown-item album_tracks_item py-3' href='" + tracks_temp.url + "' target='_blank'>" + tracks_temp.name + "</a>";
         });
+        $(".album_content").removeClass("d-none");
         $("#album_name").html(json.album.name);
         $("#playcount").html(json.album.playcount);
         $("#album_summary").html((json.album.wiki ? json.album.wiki.summary : "No summary"));
@@ -223,6 +239,7 @@ $(function () {
         $("#album_image .carousel-inner").html(images);
         $("#album_image .carousel-indicators").html(slide_indicator);
         $(".album_carousel_item:eq(0)").addClass("active");
+        $("#album_summary a").attr("target", "_blank");
       });
     }
   });

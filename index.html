@@ -55,7 +55,6 @@
                           data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                           <div class="d-flex justify-content-between">
                             <span class="font-weight-bold">Tag selection</span>
-                            <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
                           </div>
                         </button>
                       </h5>
@@ -129,7 +128,6 @@
                             data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                             <div class="d-flex justify-content-between">
                               <span class="font-weight-bold">Associated Tags</span>
-                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
                             </div>
                           </button>
                         </h5>
@@ -149,7 +147,7 @@
                             data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                             <div class="d-flex justify-content-between">
                               <span class="font-weight-bold">Similar selection</span>
-                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
+                              
                             </div>
                           </button>
                         </h5>
@@ -169,7 +167,6 @@
                             data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                             <div class="d-flex justify-content-between">
                               <span class="font-weight-bold">Top Tracks</span>
-                              <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
                             </div>
                           </button>
                         </h5>
@@ -198,7 +195,7 @@
         <div class="modal-header">
           <h5 class="modal-title font-weight-bold" id="song_list_modal">TOP ALBUM OF <span
               id="artist_name_album"></span></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close modal_close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -214,7 +211,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 album_content d-none">
               <div class="card">
                 <div class="card-header font-weight-bold">
                   DETAIL
@@ -249,7 +246,6 @@
                                   data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                                   <div class="d-flex justify-content-between">
                                     <span class="font-weight-bold">Tags</span>
-                                    <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
                                   </div>
                                 </button>
                               </h5>
@@ -271,7 +267,6 @@
                                   data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
                                   <div class="d-flex justify-content-between">
                                     <span class="font-weight-bold">Tracks</span>
-                                    <span class="toggle-plus"><i class="fa fa-plus text-dark"></i></span>
                                   </div>
                                 </button>
                               </h5>
@@ -318,8 +313,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-secondary modal_close" id="" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
